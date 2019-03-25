@@ -9,13 +9,12 @@ class ShelfHolder extends Component {
     }
 
     updateShelf = async (book,shelf) => {
-        //console.log(book)
-        const updated = await update(book,shelf);
+        await update(book,shelf);
         book.shelf = shelf;
-        this.setState((state) => {
-            Data :  state.Data.filter((item) => item.id !== book.id).concat([book])
-        })
-        this.forceUpdate();
+        const newState = this.state.Data.filter((item) => item.id !== book.id).concat([book]);
+        console.log(newState)
+        this.setState({Data : newState})
+
     }
 
 
